@@ -1,5 +1,5 @@
 from avantionary_database import DataBase as db
+import avantionary_bot
 
-result = db.definitions("Hello")
-print(result[0])
+avantionary_bot.start_polling()
 
