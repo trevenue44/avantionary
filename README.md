@@ -3,13 +3,13 @@ Avantionary is to be a dictionary sort of program written in Python. (a web inte
 
 ## Project Plan:
 - [x] Create a sort of database with management capabilities.
-    - Take in words
-    - Return definition of words
+        - Take in words
+        - Return definition of words
+- [x] Create a telegram bot that serves as another input interface to the program.
+        - A user can send the word to the bot and the definitions, synonyms and antonyms will be received as a reply.
 - [ ] Create an API in python.
-    - API will be linked with the web interface.
-    - It should link the database of words and meanings with the web interface
-- [ ] Create a telegram bot that serves as another input interface to the program.
-    - A user can send the word to the bot and the definitions, synonyms and antonyms will be received as a reply.
+        - API will be linked with the web interface.
+        - It should link the database of words and meanings with the web interface
 
 ## Useful Resources:
 - Creating Telegram Bot: https://youtu.be/NwBWW8cNCP4
