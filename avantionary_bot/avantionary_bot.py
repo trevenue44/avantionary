@@ -28,8 +28,7 @@ def start(message):
     gen_markup = InlineKeyboardMarkup(keyboard)
     avantionary_bot.reply_to(message, "Hello there!\n" +
                              "This is Avantionary.\n" + 
-                             "A bot to give you your word's meanings, synonyms and antonyms." +
-                             "\nJust text me the word!", reply_markup=gen_markup)
+                             "A bot to give you your word's meanings, synonyms and antonyms." + , reply_markup=gen_markup)
 
 
 def is_one_word(message):
@@ -47,7 +46,5 @@ def send_word_info(message):
         avantionary_bot.reply_to(message, "Word does not exist.")
     else:
         avantionary_bot.reply_to(message, f"MEANINGS:\n{word_info[0]}\n\nSYNONYMS:\n{word_info[1]}\n\nANTONYMS:\n{word_info[2]}")
-
-
 def start_polling():
     avantionary_bot.polling()
