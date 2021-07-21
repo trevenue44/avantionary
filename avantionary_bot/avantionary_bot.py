@@ -45,6 +45,9 @@ def callback_query(call):
         reverse = True
         search = True
         avantionary_bot.send_message(call.message.chat.id, "Reverse mode activated.\nSend me the word in reverse.\nI'll still send you its information")
+    if call.data == 'add':
+        avantionary_bot.send_message(call.message.chat.id, "Enter the word you want to add")
+
         
 
 
