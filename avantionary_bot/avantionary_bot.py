@@ -45,6 +45,9 @@ def callback_query(call):
         reverse = True
         search = True
         avantionary_bot.send_message(call.message.chat.id, "Reverse mode activated.\nSend me the word in reverse.\nI'll still send you its information")
+    if call.data == 'add':
+        avantionary_bot.send_message(call.message.chat.id, "Enter the word you want to add")
+
         
 
 
@@ -66,8 +69,6 @@ def send_word_info(message):
         avantionary_bot.reply_to(message, "Word does not exist.")
     else:
         avantionary_bot.reply_to(message, f"MEANINGS:\n{word_info[0]}\n\nSYNONYMS:\n{word_info[1]}\n\nANTONYMS:\n{word_info[2]}")
-
-
 def start_polling():
     avantionary_bot.polling(none_stop=True)
 
