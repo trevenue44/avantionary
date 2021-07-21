@@ -1,0 +1,89 @@
+body {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    position: relative;
+    margin:1ex;
+    background-color: rgb(221, 188, 252);
+}
+
+header{
+    position: relative;
+    width: 100%;
+    background-color: teal;
+    margin-bottom: 2ex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ header h1{
+    font-family: 'Uchen', serif;
+    font-size: 6ex;
+    color: rgb(0, 0, 0);
+    margin: 0ex;
+}
+#output{
+    display: flex;
+    flex-direction: column;
+    margin: 3ex;
+    border-style: none;
+    border-color:black ;
+    padding:2ex;
+    width: 60ex;
+    height: 70ex;
+    align-items: center;
+}
+
+#search_bar{
+    position: relative;
+    margin-left:70ex;
+    margin: 1ex 0 0 1ex;
+    display: block;
+    align-self:center;
+    width: 50ex;
+    height: 5ex;
+}
+#search_button{
+    background-color: greenyellow;
+    width: 6ex;
+    height: 6ex;
+    border-radius: 2ex;
+    margin: 1ex 0 0 1ex;
+}
+
+#search_squad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2ex;
+    border-style: solid;
+}
+
+#output_area{
+    margin: 35ex 0 0 44ex;
+    position: relative;
+    display: block;
+    height: 30ex;
+    width: 55ex;
+}
+
+output{
+    margin-top: 10ex;
+    height: 70ex;
+    width: 80ex;
+    border-radius: 1.7ex;
+    background-color: white;
+    border: teal;
+    border-style: solid;
+}
+
+#main_buttons_div{
+    /* border-style:solid; */
+    margin-top:2ex;
+    padding: 1ex;
+}
+
+.main_buttons{
+    width:20ex;
+    height:6ex;
+}
