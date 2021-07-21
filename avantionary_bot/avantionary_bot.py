@@ -69,6 +69,7 @@ def send_word_info(message):
         avantionary_bot.reply_to(message, "Word does not exist.")
     else:
         avantionary_bot.reply_to(message, f"MEANINGS:\n{word_info[0]}\n\nSYNONYMS:\n{word_info[1]}\n\nANTONYMS:\n{word_info[2]}")
+
 def start_polling():
     avantionary_bot.polling(none_stop=True)
 
