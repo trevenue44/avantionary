@@ -27,8 +27,9 @@ header{
     flex-direction: column;
     justify-content: center;
 }
-.update_info_input{
-    height: 4ex;
+.udate_info_input{
+    height: 3ex;
+    width: 40ex;
     margin: 2ex;
 }
 

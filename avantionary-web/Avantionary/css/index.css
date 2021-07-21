@@ -42,6 +42,8 @@ header{
     align-self:center;
     width: 50ex;
     height: 5ex;
+    border-style: solid;
+
 }
 #search_button{
     background-color: greenyellow;
@@ -51,12 +53,12 @@ header{
     margin: 1ex 0 0 1ex;
 }
 
+
 #search_squad{
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 2ex;
-    border-style: solid;
 }
 
 #output_area{
@@ -86,4 +88,26 @@ output{
 .main_buttons{
     width:20ex;
     height:6ex;
+}
+
+#delete_button{
+    background-color: red;
+    font-family: 'Uchen', serif;
+    font-size: 2ex;
+    font-weight: 800;
+}
+
+#add_word_button{
+    background-color: green;
+    font-family: 'Uchen', serif;
+    font-size: 2ex;
+    font-weight: 800;
+}
+
+#update_word_button{
+    background-color: blue;
+    font-family: 'Uchen', serif;
+    font-size: 2ex;
+    font-weight: 800;
+    color: burlywood;
 }
