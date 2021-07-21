@@ -10,6 +10,9 @@ Avantionary is to be a dictionary sort of program written in Python. (a web inte
 - [ ] Create an API in python.
         - API will be linked with the web interface.
         - It should link the database of words and meanings with the web interface
+- [ ] Add finishing touches
+- [ ] Job Done; Project Completed!
 
 ## Useful Resources:
 - Creating Telegram Bot: https://youtu.be/NwBWW8cNCP4
+- Creating a Simple Rest API: https://youtu.be/GMppyAPbLYk
