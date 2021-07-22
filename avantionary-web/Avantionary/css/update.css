@@ -4,13 +4,13 @@ body {
     align-items: center;
     position: relative;
     margin:1ex;
-    background-color: rgb(221, 188, 252);
+    background-color: burlywood;
 }
 
 header{
     position: relative;
     width: 100%;
-    background-color: teal;
+    background-color: black; /*teal;*/
     margin-bottom: 2ex;
     display: flex;
     flex-direction: row;
@@ -19,8 +19,19 @@ header{
  header h1{
     font-family: 'Uchen', serif;
     font-size: 6ex;
-    color: rgb(0, 0, 0);
+    color: rgb(160, 136, 4);
     margin: 0ex;
+}
+#update_area{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+}
+.art{
+    width: 80ex;
+    height: 80ex;
 }
 #update_info{
     display: flex;

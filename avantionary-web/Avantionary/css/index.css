@@ -4,13 +4,13 @@ body {
     align-items: center;
     position: relative;
     margin:1ex;
-    background-color: rgb(221, 188, 252);
+    background-color: burlywood;
 }
 
 header{
     position: relative;
     width: 100%;
-    background-color: teal;
+    background-color: black; /*teal;*/
     margin-bottom: 2ex;
     display: flex;
     flex-direction: row;
@@ -19,7 +19,7 @@ header{
  header h1{
     font-family: 'Uchen', serif;
     font-size: 6ex;
-    color: rgb(0, 0, 0);
+    color: rgb(160, 136, 4);
     margin: 0ex;
 }
 #output{
@@ -69,18 +69,29 @@ header{
     width: 55ex;
 }
 
+.art{
+    width: 80ex;
+    height: 80ex;
+}
+
+#output_area{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+}
 output{
     margin-top: 10ex;
     height: 70ex;
     width: 80ex;
     border-radius: 1.7ex;
     background-color: white;
-    border: teal;
+    border: gold;
     border-style: solid;
 }
 
 #main_buttons_div{
-    /* border-style:solid; */
     margin-top:2ex;
     padding: 1ex;
 }
@@ -98,16 +109,17 @@ output{
 }
 
 #add_word_button{
-    background-color: green;
+    background-color: teal;
     font-family: 'Uchen', serif;
     font-size: 2ex;
     font-weight: 800;
 }
 
 #update_word_button{
-    background-color: blue;
+    background-color: rgb(7, 77, 0);
     font-family: 'Uchen', serif;
     font-size: 2ex;
     font-weight: 800;
     color: burlywood;
 }
+
