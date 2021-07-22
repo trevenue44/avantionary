@@ -12,9 +12,12 @@ class DataBase():
         word = word.upper().strip()
         first_letter = word[0]
         # knowing the first letter of the word, we can go straight to the json file to open
-        section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
-        with open(section) as sec:
-            dictionary_data = json.load(sec)
+        if first_letter.isalpha():
+            section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
+            with open(section) as sec:
+                dictionary_data = json.load(sec)
+        else:
+            return "Word does not exist."
         # with dic data, we find all info about the word
         if word in dictionary_data:
             word_info = dictionary_data[word]
