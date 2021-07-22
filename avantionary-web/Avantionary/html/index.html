@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <script src="../js/index.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
+        </style>
+
+    <title>Avantionary</title>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Avantionary</h1>
+    </header>
+        
+
+     <div id="output">
+
+        <div id="search_squad">
+
+            <input id="search_bar"type="text" placeholder="Type your word here">
+            <button id="search_button" class="Btn" onclick="getInputValue(); showAnswer();">
+                <img src="fonts/black-24dp/1x/outline_search_black_24dp.png" alt="">
+                Search Word
+            </button>
+
+        </div>
+
+        <div id="main_buttons_div">
+            <a href="../html/update.html">
+                <button class="main_buttons">
+                    Update A Word
+                </button>
+            </a>
+            <button class="main_buttons">Delete Word</button>
+            <a href="../html/addword.html">
+                <button class="main_buttons">Add A Word</button>
+            </a>
+        </div>
+        <div style="color: green;" class="result"></div>
+        <output id="outputarea">
+            
+        </output>
+        <!-- <script>
+            let resEle = document.querySelector(".result");
+            let heading = document.createElement("h3");
+            document.querySelector(".Btn").addEventListener("click", () => {
+               let headingText = document.createTextNode("This is a random heading");
+               heading.appendChild(headingText);
+               resEle.appendChild(heading);
+            });
+         </script> -->
+   
+    </div>
+    
+</body>
+</html>
