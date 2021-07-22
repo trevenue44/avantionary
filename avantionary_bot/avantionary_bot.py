@@ -9,7 +9,7 @@ API_KEY = os.environ.get("AVANTIONARY_API_KEY")
 
 search = False
 reverse = False
-add_word, add_meaning, add_synonym, add_antonym = False
+add_word, add_meaning, add_synonym, add_antonym = (False, False, False, False)
 add = False
 
 info_to_add = {}
@@ -39,7 +39,7 @@ def start(message):
                              reply_markup=gen_markup)
 
 
-@avantionary_bot.callback_query_handler(func= lambda call: True)
+@avantionary_bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global search, reverse, add
     if call.data == "search":
@@ -58,16 +58,14 @@ def callback_query(call):
         avantionary_bot.send_message(call.message.chat.id, "Let's start with the word: ")
         add = True
 
-        
-
-
 def is_one_word(message):
-    if " " not in message.text.strip() and search:
+    if " " not in message.text.strip() and search and not add:
         return True
-    elif search:
+    elif search and not add:
         avantionary_bot.reply_to(message, "Not a word.")
     else:
         return False
+
 
 @avantionary_bot.message_handler(func=is_one_word)
 def send_word_info(message):
@@ -79,39 +77,48 @@ def send_word_info(message):
     if word_info == "Word does not exist.":
         avantionary_bot.reply_to(message, "Word does not exist.")
     else:
-        avantionary_bot.reply_to(message, f"MEANINGS:\n{word_info[0]}\n\nSYNONYMS:\n{word_info[1]}\n\nANTONYMS:\n{word_info[2]}")
+        avantionary_bot.reply_to(message, f"**MEANING(S)**:\n{word_info[0]}\n\n**SYNONYM(S)**:\n{word_info[1]}\n\n**ANTONYM(S)**:\n{word_info[2]}")
 
-def start_polling():
-    avantionary_bot.polling(none_stop=True)
 
-@avantionary_bot.message_handler(func=lambda:add and is_one_word())
+@avantionary_bot.message_handler(func=lambda _: True if add else False)
 def add_word(message):
-    global info_to_add, add_meaning
-    info_to_add["word"] = message.text.strip()
-    avantionary_bot.send_message(message.chat.id, "Meaning of "+ info_to_add["word"])
-    add_meaning = True
+    global info_to_add, add_meaning, add
+    if " " not in message.text.strip():
+        info_to_add["word"] = message.text.strip()
+        avantionary_bot.send_message(message.chat.id, "Meaning of "+ info_to_add["word"])
+        add_meaning = True
+        add = False
+    else:
+        avantionary_bot.reply_to(message, "Not one word. Please try again.")
 
-@avantionary_bot.message_handler(func=lambda:add_meaning)
+@avantionary_bot.message_handler(func=lambda _: True if add_meaning else False)
 def add_meaning(message):
-    global info_to_add, add_synonym
+    global info_to_add, add_synonym, add_meaning
     info_to_add["meaning"] = message.text.strip()
     avantionary_bot.send_message(message.chat.id, "Synonyms of "+ info_to_add["word"] + "\n Enter a dot(.) if there is none")
     add_synonym = True
+    add_meaning = False
  
-@avantionary_bot.message_handler(func=lambda: add_synonym)
+@avantionary_bot.message_handler(func=lambda _: True if add_synonym else False)
 def add_synonym(message):
-    global info_to_add, add_antonym
+    global info_to_add, add_antonym, add_synonym
     info_to_add["synonyms"] = message.text.strip() if message.text.strip() != "." else ""
     avantionary_bot.send_message(message.chat.id, "Antonym of "+ info_to_add["word"] + "\n Enter a dot(.) if there is none")
     add_antonym = True
+    add_synonym = False
 
-@avantionary_bot.message_handler(func=lambda: add_antonym)
+@avantionary_bot.message_handler(func=lambda _: True if add_antonym else False)
 def add_antonym(message):
-    global info_to_add
-    info_to_add["meaning"] = message.text.strip() if message.text.strip() != "." else ""
-    avantionary_bot.send_message(message.chat.id, "Antonym of "+ info_to_add["word"] + "\n Enter a dot(.) if there is none")
+    global info_to_add, add_antonym
+    info_to_add["antonyms"] = message.text.strip() if message.text.strip() != "." else ""
+    add_antonym = False
     confirmation = False
-    avantionary_bot.send_message(message.chat.id, "Are you sure you want to add the following data to the dictionary?")
-
+    
     confirmation_markup = ReplyKeyboardMarkup()
     confirmation_markup.row(KeyboardButton("Yes"), KeyboardButton("No"))
+    avantionary_bot.send_message(message.chat.id, "Are you sure you want to add the following data to the dictionary?", reply_markup=confirmation_markup)
+
+    print(info_to_add)
+
+def start_polling():
+    avantionary_bot.polling(none_stop=True)
