@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from avantionary_database import DataBase as db
 load_dotenv()
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 
 API_KEY = os.environ.get("AVANTIONARY_API_KEY")
 
@@ -83,11 +83,15 @@ def send_word_info(message):
 @avantionary_bot.message_handler(func=lambda _: True if add else False)
 def add_word(message):
     global info_to_add, add_meaning, add
-    if " " not in message.text.strip():
-        info_to_add["word"] = message.text.strip()
-        avantionary_bot.send_message(message.chat.id, "Meaning of "+ info_to_add["word"])
-        add_meaning = True
-        add = False
+    if (" " not in message.text.strip()) and not message.text.strip().isnumeric():
+        if db.definitions(message.text.strip()) == "Word does not exist.":
+            info_to_add["word"] = message.text.strip()
+            avantionary_bot.send_message(message.chat.id, "Meaning of "+ info_to_add["word"])
+            add_meaning = True
+            add = False
+        else:
+            avantionary_bot.reply_to(message, "Word already in avantionary.")
+            return
     else:
         avantionary_bot.reply_to(message, "Not one word. Please try again.")
 
@@ -112,13 +116,35 @@ def add_antonym(message):
     global info_to_add, add_antonym
     info_to_add["antonyms"] = message.text.strip() if message.text.strip() != "." else ""
     add_antonym = False
-    confirmation = False
     
+    avantionary_bot.send_message(message.chat.id, "Are you sure you want to add the following data to the dictionary?\n\nYes or No", reply_markup=make_confirmation_markup())
+
+
+def make_confirmation_markup():
     confirmation_markup = ReplyKeyboardMarkup()
     confirmation_markup.row(KeyboardButton("Yes"), KeyboardButton("No"))
-    avantionary_bot.send_message(message.chat.id, "Are you sure you want to add the following data to the dictionary?", reply_markup=confirmation_markup)
+    return confirmation_markup
 
-    print(info_to_add)
+def confirmation(message):
+    if message.text.strip().lower() == "yes":
+        avantionary_bot.send_message(message.chat.id, "Your choice: Yes", reply_markup=ReplyKeyboardRemove())
+        return True
+    elif message.text.strip().lower() == "no":
+        avantionary_bot.send_message(message.chat.id, "Action aborted.")
+        return False
+    else:
+        avantionary_bot.send_message(message.chat.id, "Invalid choice. Please try again.", reply_markup=make_confirmation_markup())
+
+
+@avantionary_bot.message_handler(func=confirmation)
+def add_word_confirmed(message):
+    feedback = add_word(info_to_add)
+    avantionary_bot.send_message(message.chat.id, feedback)
+
+
+def add_word(info):
+    print(info)
+    return "Word Printed"
 
 def start_polling():
     avantionary_bot.polling(none_stop=True)
