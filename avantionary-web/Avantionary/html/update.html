@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/update.css">
+    <script src="../js/update.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
+        </style>
+
+    <title>Avanctionary | Update Screen </title>
+</head>
+<body>
+    <header>
+        <h1>Avantionary</h1>
+    </header>
+<!-- 
+    <script>
+//         //var search = document.getElementById("word").value;
+//         var search = "word"
+//         console.log(search);
+
+//         var url = `http://127.0.0.1:5000/WordInformation/${search}`
+// //        
+//         console.log("In you");
+//         axios.get(url)
+//         .then(response => {
+//             const word = response.data.data;
+//             console.log(`GET list users`, word);
+//             alert(word[1])
+//         })
+//         .catch(error => console.error(error));
+
+    </script> -->
+
+    <div id="update_area">
+        <img id="gal_art" class="art" src="../images/AvantionaryGyal2.png" alt="">
+
+        <div id="update_info">
+            <input id = "word" class="udate_info_input" type="text" placeholder="Enter the word to add">
+            <input id = "partofspeech" class="udate_info_input" type="text" placeholder="Enter the part of speech it belongs">
+            <input id = "synonym" class="udate_info_input" type="text" placeholder="Enter a synonym if any">
+            <input id = "antonym" class="udate_info_input" type="text" placeholder="Enter an antonym of the word">
+            <button id="update_button" onclick="userAction()">Update</button>
+        </div>
+
+        <img id="guy_art" class="art" src="../images/AvantionaryColour2.png" alt="">
+
+    </div>
+    
+
+
+</body>
+</html>
