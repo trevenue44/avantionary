@@ -42,5 +42,51 @@ class DataBase():
             return "Word does not exist."
 
 
+    def add_to_dictionary(info):
+        """
+        Funtion for adding to the dictionary json files
+        """
+        first_letter = info["word"][0].upper()
+        section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
+        with open(section) as sec:
+            all_data = json.load(sec)
 
+        # putting the data into the right form
+        processed_info_to_add = {
+            "MEANINGS": {"1": info["meaning"]},
+            "ANTONYMS": info["antonyms"],
+            "SYNONYMS": info["synonyms"]
+        } 
+
+        # updating the json file
+        all_data[info["word"].upper()] = processed_info_to_add
+        json_object = json.dumps(all_data, indent=4, sort_keys=True)
+
+        with open(section, "w") as f:
+            f.write(json_object)
+        
+        return info["word"].upper() + " added succesfully!"
+
+
+    def delete_from_dictionary(word):
+        """
+        Funtion for deleting from the dictionary json files
+        """
+        first_letter = word.upper()[0]
+        section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
+        with open(section) as sec:
+            all_data = json.load(sec)
+        
+        if word in all_data:
+            del all_data[word.upper()]
+
+            json_object = json.dumps(all_data, indent=4, sort_keys=True)
+
+            with open(section, "w") as f:
+                f.write(json_object)
+            
+            return "Word deleted successfully."
+
+        else:
+            return "Word not in dictionary"
 
