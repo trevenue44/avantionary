@@ -83,8 +83,8 @@ header{
 }
 output{
     margin-top: 10ex;
-    height: 70ex;
-    width: 80ex;
+    height: 50ex; 
+    width: 70ex;
     border-radius: 1.7ex;
     background-color: white;
     border: gold;
@@ -93,7 +93,6 @@ output{
 
 #main_buttons_div{
     margin-top:2ex;
-    padding: 1ex;
 }
 
 .main_buttons{

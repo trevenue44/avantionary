@@ -4,14 +4,14 @@ function getInputValue(){
     console.log(inputVal);
     // Displaying the value
     document.getElementById("outputarea").innerHTML = inputVal;
-    //alert("Trial Note")
-        alert(inputVal);
+        //Call Api 
 }
 
 function showAnswer(){
     var inputVal = document.getElementById("search_bar").value;
     document.getElementById("outputarea").innerHTML = inputVal;
-    alert("Trial Note")
+    //alert("Trial Note")
+    //Show answer in text area
 
 }
 
