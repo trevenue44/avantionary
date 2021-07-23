@@ -17,7 +17,12 @@ class DataBase():
             with open(section) as sec:
                 dictionary_data = json.load(sec)
         else:
-            return "Word does not exist."
+            section = "./avantionary_database/dictionary_data/D_XX.json"
+            try:
+                with open(section) as sec:
+                    dictionary_data = json.load(sec)
+            except FileNotFoundError:
+                return "Word does not exist."
         # with dic data, we find all info about the word
         if word in dictionary_data:
             word_info = dictionary_data[word]
@@ -47,10 +52,16 @@ class DataBase():
         Funtion for adding to the dictionary json files
         """
         first_letter = info["word"][0].upper()
-        section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
-        with open(section) as sec:
-            all_data = json.load(sec)
-
+        if first_letter.isalpha():
+            section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
+        else:
+            section = "./avantionary_database/dictionary_data/D_XX.json"
+        try:
+            with open(section) as sec:
+                all_data = json.load(sec)
+        except FileNotFoundError:
+            all_data = {}
+        
         # putting the data into the right form
         processed_info_to_add = {
             "MEANINGS": {"1": info["meaning"]},
@@ -73,9 +84,15 @@ class DataBase():
         Funtion for deleting from the dictionary json files
         """
         first_letter = word.upper()[0]
-        section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
-        with open(section) as sec:
-            all_data = json.load(sec)
+        if first_letter.isalpha():
+            section = "./avantionary_database/dictionary_data/D" + first_letter + ".json"
+        else:
+            section = "./avantionary_database/dictionary_data/D_XX.json"
+        try:
+            with open(section) as sec:
+                all_data = json.load(sec)
+        except FileNotFoundError:
+            all_data = {}
         
         if word in all_data:
             del all_data[word.upper()]
