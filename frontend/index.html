@@ -1,23 +1,874 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avant Garde | Avanctionary</title>
-</head>
-<body>
-    <input type="text" placeholder="Enter the word to search">
-    <button>Search</button>
+<!DOCTYPE HTML>
+  <html lang="">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+    <script src="hero.1.0.0.js"></script>
+    <script src="fusion.1.0.0.js"></script>
+    </head>
+  <body>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  .hero-element {
+    position: absolute;
+  }
+  .fusion--player {
+    background-color: #fff;
+  }
+  
+  
+        #guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  background-color: #fff;
+}
+#guid_f0654ce8_1621_4de5_b7aa_6768e64c6998 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_952b3966_6b50_46f9_a57a_68e7b5e767c9 {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  opacity: 0.23000000417232513;
+  background-color: rgba(75, 245, 239, 0.98);
+}
+#guid_94baf410_af48_40b6_8529_403cf1f54008 {
+  width: 1920px;
+  height: 797px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 283);
+  opacity: 0.7200000286102295;
+  background-color: rgba(141, 236, 251, 0.55);
+  border-radius: 27px 27px 27px 27px;
+}
+#guid_97aa04d7_3574_495e_a4bd_a8fe5edbadef {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1848, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_1bf07605_d313_434c_b272_32fdc4cc0315 {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, -2, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_e0c54c02_b6a3_458a_905c_0616088b9bb0 {
+  width: 988px;
+  height: 283px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 466, 0);
+  opacity: 0;
+  background-color: #fff;
+  border: 1px solid #707070;
+}
+#guid_ca531bd8_4f9f_4ff2_bc03_8f28e031e8bb {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 529, 71);
+  opacity: 0.699999988079071;
+}
+#guid_abb4929f_a9f8_40fd_b7d7_4f567e1c7623 {
+  width: 861px;
+  font-family: Segoe UI;
+  font-size: 80px;
+  color: #000;
+  text-align: center;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_d0a70e97_b919_4ca7_9809_8c36006c670a {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 4.051727294921875, 0);
+}
+#guid_2866125f_1942_492b_a0da_d0323fa183f2 {
+  width: 1183px;
+  height: 120px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 364.9482727050781, 350);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 49px 49px 49px 49px;
+}
+#guid_c2150283_5fce_43f8_81c6_5283376933c5 {
+  width: 978.948px;
+  height: 70.348px;
+  font-family: Segoe UI;
+  font-size: 35px;
+  color: #000;
+  text-align: center;
+  font-weight: 400;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 466, 373.5759582519531);
+}
+#guid_efe97d6c_cd76_4d66_91e5_1822d770e970 {
+  width: 562px;
+  height: 97px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 674.9482421875, 570);
+}
+#guid_30833ce1_984d_4b0b_af25_263e600d1115 {
+  width: 333px;
+  height: 97px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1551.9482421875, 952);
+}
+#guid_48ca16f5_382d_47a5_ac8b_c15a97e660e0 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_4e5425c7_2e75_4def_b56b_a3dcc9958e12 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 341.0517578125, -84.7535400390625);
+}
+#guid_aa0b5d9a_2ec2_4071_8ca9_bd91a06d87e7 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 354.6934509277344, 679);
+}
+#guid_cdf3f7a1_821a_4377_a05c_fff47a514252 {
+  width: 33.846px;
+  height: 11.686px;
+  transform-origin: 50% 50%;
+  transform: matrix(-0.7071068286895752, 0.7071067690849304, -0.7071067690849304, -0.7071068286895752, -0.8248959472302602, 32.56604484181923);
+  background-color: rgba(246, 249, 180, 0.69);
+  border-radius: 18px 18px 18px 18px;
+}
+#guid_0ffa2842_fa62_4e96_8352_cfd53cf03d81 {
+  width: 37px;
+  height: 37px;
+  border-radius: 50% 50%;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 17.25482177734375, 0);
+  background-color: #fff;
+}
+#guid_5e7dbaba_2dfa_4f8b_a968_aa0e336b0784 {
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50%;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 24.25482177734375, 6);
+  background-color: rgba(0, 255, 43, 0.55);
+  border: 1px solid #707070;
+}
+#guid_e7bf2284_175e_4361_ac04_1a337ef108f6 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 762, 589);
+}
+#guid_fa53fa3f_96c6_4a1a_ac9a_44ee1b3a4329 {
+  width: 408px;
+  height: 65px;
+  font-family: Segoe UI;
+  font-size: 40px;
+  color: #000;
+  text-align: center;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_8126cea0_1d16_4207_b1a4_310b04cb4e57 {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  background-color: #fff;
+}
+#guid_e82d2382_8859_402b_b274_29eacb1e3b8f {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_644cf255_e5d4_4b11_9ec2_a6573924f259 {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  opacity: 0.23000000417232513;
+  background-color: rgba(75, 245, 239, 0.98);
+}
+#guid_200bebeb_7c83_4d18_a19c_c1e74cd417c6 {
+  width: 1280px;
+  height: 1080px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 640, 0);
+  opacity: 0.7200000286102295;
+  background-color: rgba(141, 236, 251, 0.55);
+  border-radius: 27px 27px 27px 27px;
+}
+#guid_52f26a0a_fc92_4e6f_a700_d99cb17530c2 {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1848, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_f5ba5dfe_a084_48a8_a76a_29b10e26b29b {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, -2, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_29b13311_7078_4846_a4b6_bd6df0e1e898 {
+  width: 600px;
+  height: 106px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 34, 71);
+  opacity: 0.699999988079071;
+}
+#guid_bd14b209_5494_4087_80b1_8fc626cd6e91 {
+  width: 577px;
+  height: 136px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 28, 344);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_48f2343a_0bb8_4b0b_92da_a2ad37e43053 {
+  width: 497.5px;
+  height: 104px;
+  font-family: Segoe UI;
+  font-size: 60px;
+  color: #000;
+  text-align: center;
+  font-weight: 600;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 70, 361.5);
+}
+#guid_8cdc7522_c2c9_405e_b1bc_3125c4f2f2a5 {
+  width: 1219px;
+  height: 872px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 665, 177);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_78cc9dd6_7cbe_4ce6_8b5d_3e0e58264511 {
+  width: 595px;
+  height: 509px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 34, 540);
+  opacity: 0.44999998807907104;
+  background-color: #fff;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_ed407b72_d43e_44fb_b49d_a22886e7f3d2 {
+  width: 298px;
+  height: 515px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 34, 534);
+  background-color: rgba(0, 255, 43, 0.3);
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_2f27c36d_2176_4673_80f9_c3f3ae3696e6 {
+  width: 298px;
+  height: 515px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 334, 534);
+  background-color: rgba(246, 249, 180, 0.69);
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_56f155d9_1300_4367_a4e3_531cd522cc23 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_2cdb90b9_6151_4eaf_baf8_7636188a47e6 {
+  width: 274px;
+  height: 82px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 46, 554);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_0aaea7ec_cbd5_48ac_a426_0119c921fd41 {
+  width: 185px;
+  font-family: Arial Special G1;
+  font-size: 40px;
+  color: #000;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 92, 565);
+}
+#guid_f0299db8_2582_40d7_b05b_ac3fad7a67d9 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 300, 0);
+}
+#guid_97543c91_4dbe_4622_b5f5_a3b3162958ee {
+  width: 274px;
+  height: 82px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 46, 554);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_90f813f7_3090_4b51_8878_d5ba8182aacd {
+  width: 185px;
+  font-family: Arial Special G1;
+  font-size: 40px;
+  color: #000;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 92, 565);
+}
+#guid_bcc45213_9615_4ae2_a21b_119f3acaa1ef {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_66554a1a_400f_4902_8983_50813a117010 {
+  width: 246px;
+  height: 329px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 59, 667);
+  opacity: 0;
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_14b702a4_fd0b_4536_af06_24deae93ccb1 {
+  width: 238px;
+  font-family: Arial Special G1;
+  font-size: 40px;
+  color: #000;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 70, 710);
+}
+#guid_450be180_6f34_4049_987e_2e8926818538 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 300, 0);
+}
+#guid_78062a86_4aba_4564_a935_3f7abc231b6b {
+  width: 246px;
+  height: 329px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 59, 667);
+  opacity: 0;
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_2be9e559_f038_481a_87b4_8243347ad6cd {
+  width: 238px;
+  font-family: Arial Special G1;
+  font-size: 40px;
+  color: #000;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 70, 710);
+}
+#guid_4dbb1518_5989_4276_939e_92a691f09a45 {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  background-color: #fff;
+}
+#guid_72c1c183_6aff_4b86_9631_33eb3c7ea13a {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_7dc77bdd_4278_4c1b_a5dd_10aa820dc948 {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  opacity: 0.23000000417232513;
+  background-color: rgba(75, 245, 239, 0.98);
+}
+#guid_334b0711_274a_4665_b991_0cc2cef6fbef {
+  width: 1280px;
+  height: 1080px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 640, 0);
+  opacity: 0.7200000286102295;
+  background-color: rgba(141, 236, 251, 0.55);
+  border-radius: 27px 27px 27px 27px;
+}
+#guid_53021d5c_e539_49ca_af6d_0cb414f99aa6 {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1848, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_80ca8299_7428_461e_b803_ef8342c06406 {
+  width: 72px;
+  height: 84px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, -2, 996);
+  opacity: 0.4099999964237213;
+  background-color: rgba(246, 249, 180, 0.69);
+}
+#guid_c1d7263e_37b0_4489_a228_36fdbb246b6c {
+  width: 600px;
+  height: 106px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 34, 71);
+  opacity: 0.699999988079071;
+}
+#guid_ed401d41_c2f1_429c_97e5_aa9bf4655df2 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_839dbb2f_03c7_4756_a513_638e28500dad {
+  width: 577px;
+  height: 83px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 28, 234);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_8d5825e8_7012_4503_a43e_49ba9f51d561 {
+  width: 497.5px;
+  height: 48.5px;
+  font-family: Segoe UI;
+  font-size: 35px;
+  color: #000;
+  text-align: center;
+  font-weight: 400;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 67.75, 251.25);
+}
+#guid_d68e83fc_e4bb_41db_a20f_8b0d9cf5b658 {
+  width: 1219px;
+  height: 690px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 665, 177);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_37558099_294c_4353_a51f_71b1f1bbe19c {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 2, 0);
+}
+#guid_4e975129_58b5_46dd_9429_c874189254c8 {
+  width: 689px;
+  height: 80px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 930, 84);
+  opacity: 0.25;
+  background-color: #fff;
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_6df2cac6_a765_495a_946e_613a24dc625e {
+  width: 258px;
+  font-family: Arial Special G1;
+  font-size: 50px;
+  color: #000;
+  text-align: center;
+  font-weight: 700;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1147, 87);
+}
+#guid_61eac0c1_734c_447a_bc75_8310df14aff6 {
+  width: 261px;
+  height: 80px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 1110, 916);
+}
+#guid_7ca6dbb7_2e11_45cf_bba6_a0983bee462e {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#guid_ba5d9b40_fe86_49e4_a98a_010a5b605f87 {
+  width: 114px;
+  height: 590.5px;
+  transform-origin: 50% 50%;
+  transform: matrix(6.123234262925839e-17, 1, -1, 6.123234262925839e-17, 266.25, 673.25);
+  background-color: rgba(246, 249, 180, 0.69);
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_20035cbd_e5ae_4ff5_baad_681f32aa50b5 {
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, -144);
+}
+#guid_fe16fa7d_4767_480a_a961_b1018b5bbca2 {
+  width: 114px;
+  height: 590.5px;
+  transform-origin: 50% 50%;
+  transform: matrix(6.123234262925839e-17, 1, -1, 6.123234262925839e-17, 266.25, 673.25);
+  background-color: rgba(0, 255, 43, 0.3);
+  border-radius: 55px 55px 55px 55px;
+}
+#guid_4316cfe6_b208_4146_8520_e0578c2bd324 {
+  width: 591px;
+  height: 395px;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 28, 342);
+  background-color: #fff;
+  border: 1px solid #707070;
+  border-radius: 55px 55px 55px 55px;
+}
 
-<br>
+      
+
+  </style>
+
+  
+
+        <!-- /////////////////////// -->
+        <!-- Player -->
+        <div class="wrapper" style="position: relative; width: 100%; height: 100%;">
+          <div id="player" class="fusion--player" style="width: 100%; height: 100%; ">
+            <div class="fusion--viewport">
+            
+            
+
+            
+            <div class="fusion--scene fusion--scene--default scene-guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c">
+              <div class="fusion--scene--content">
+                
+<div id="guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c" class="artboard scene" >
+<div id="guid_f0654ce8_1621_4de5_b7aa_6768e64c6998" class="hero-element" >
+<div id="guid_952b3966_6b50_46f9_a57a_68e7b5e767c9" class="hero-element" >
+</div>
+<div id="guid_94baf410_af48_40b6_8529_403cf1f54008" class="hero-element" >
+</div>
+</div>
+<div id="guid_97aa04d7_3574_495e_a4bd_a8fe5edbadef" class="hero-element" >
+</div>
+<div id="guid_1bf07605_d313_434c_b272_32fdc4cc0315" class="hero-element" >
+</div>
+<div id="guid_e0c54c02_b6a3_458a_905c_0616088b9bb0" class="hero-element" >
+</div>
+<div id="guid_ca531bd8_4f9f_4ff2_bc03_8f28e031e8bb" class="hero-element" hero-fx-glitch="{}" >
+<div id="guid_abb4929f_a9f8_40fd_b7d7_4f567e1c7623" class="hero-element" hero-fx-glitch="{}" >AVANTIONARY
+</div>
+</div>
+<div id="guid_d0a70e97_b919_4ca7_9809_8c36006c670a" class="hero-element" >
+<div id="guid_2866125f_1942_492b_a0da_d0323fa183f2" class="hero-element" >
+</div>
+<div id="guid_c2150283_5fce_43f8_81c6_5283376933c5" class="hero-element" >Type to find the definition
+</div>
+<img id="guid_efe97d6c_cd76_4d66_91e5_1822d770e970" class="hero-element" src="guid_efe97d6c_cd76_4d66_91e5_1822d770e970.png" hero-fx-magnet="{}" >
+
+<img id="guid_30833ce1_984d_4b0b_af25_263e600d1115" class="hero-element" src="guid_30833ce1_984d_4b0b_af25_263e600d1115.png" hero-fx-magnet="{}" >
+
+</div>
+<div id="guid_48ca16f5_382d_47a5_ac8b_c15a97e660e0" class="hero-element" >
+<div id="guid_4e5425c7_2e75_4def_b56b_a3dcc9958e12" class="hero-element" >
+<div id="guid_aa0b5d9a_2ec2_4071_8ca9_bd91a06d87e7" class="hero-element" >
+<div id="guid_cdf3f7a1_821a_4377_a05c_fff47a514252" class="hero-element" >
+</div>
+<div id="guid_0ffa2842_fa62_4e96_8352_cfd53cf03d81" class="hero-element" >
+</div>
+<div id="guid_5e7dbaba_2dfa_4f8b_a968_aa0e336b0784" class="hero-element" >
+</div>
+</div>
+</div>
+<div id="guid_e7bf2284_175e_4361_ac04_1a337ef108f6" class="hero-element" >
+<div id="guid_fa53fa3f_96c6_4a1a_ac9a_44ee1b3a4329" class="hero-element" >SEARCH
+</div>
+</div>
+</div>
+</div>
+              </div>
+            </div> 
 
 
-    <button><a href="./update.html">Update A Word</a></button>
-    <button>Delete Word</button>
-    <button>Add A Word</button>
+      
+
+            
+            <div class="fusion--scene fusion--scene--default scene-guid_8126cea0_1d16_4207_b1a4_310b04cb4e57">
+              <div class="fusion--scene--content">
+                
+<div id="guid_8126cea0_1d16_4207_b1a4_310b04cb4e57" class="artboard scene" >
+<div id="guid_e82d2382_8859_402b_b274_29eacb1e3b8f" class="hero-element" >
+<div id="guid_644cf255_e5d4_4b11_9ec2_a6573924f259" class="hero-element" >
+</div>
+<div id="guid_200bebeb_7c83_4d18_a19c_c1e74cd417c6" class="hero-element" >
+</div>
+</div>
+<div id="guid_52f26a0a_fc92_4e6f_a700_d99cb17530c2" class="hero-element" >
+</div>
+<div id="guid_f5ba5dfe_a084_48a8_a76a_29b10e26b29b" class="hero-element" >
+</div>
+<img id="guid_29b13311_7078_4846_a4b6_bd6df0e1e898" class="hero-element" src="guid_29b13311_7078_4846_a4b6_bd6df0e1e898.png" hero-fx-magnet="{}" >
+
+<div id="guid_bd14b209_5494_4087_80b1_8fc626cd6e91" class="hero-element" >
+</div>
+<div id="guid_48f2343a_0bb8_4b0b_92da_a2ad37e43053" class="hero-element" >Searched Word
+</div>
+<div id="guid_8cdc7522_c2c9_405e_b1bc_3125c4f2f2a5" class="hero-element" >
+</div>
+<div id="guid_78cc9dd6_7cbe_4ce6_8b5d_3e0e58264511" class="hero-element" >
+</div>
+<div id="guid_ed407b72_d43e_44fb_b49d_a22886e7f3d2" class="hero-element" hero-fx-magnet="{}" >
+</div>
+<div id="guid_2f27c36d_2176_4673_80f9_c3f3ae3696e6" class="hero-element" hero-fx-magnet="{}" >
+</div>
+<div id="guid_56f155d9_1300_4367_a4e3_531cd522cc23" class="hero-element" >
+<div id="guid_2cdb90b9_6151_4eaf_baf8_7636188a47e6" class="hero-element" >
+</div>
+<div id="guid_0aaea7ec_cbd5_48ac_a426_0119c921fd41" class="hero-element" >Synonym
+</div>
+</div>
+<div id="guid_f0299db8_2582_40d7_b05b_ac3fad7a67d9" class="hero-element" >
+<div id="guid_97543c91_4dbe_4622_b5f5_a3b3162958ee" class="hero-element" >
+</div>
+<div id="guid_90f813f7_3090_4b51_8878_d5ba8182aacd" class="hero-element" >Antonym
+</div>
+</div>
+<div id="guid_bcc45213_9615_4ae2_a21b_119f3acaa1ef" class="hero-element" >
+<div id="guid_66554a1a_400f_4902_8983_50813a117010" class="hero-element" >
+</div>
+<div id="guid_14b702a4_fd0b_4536_af06_24deae93ccb1" class="hero-element" >1. Synonym<br/>2. Synonym<br/>3. Synonym<br/>4. Synonym
+</div>
+</div>
+<div id="guid_450be180_6f34_4049_987e_2e8926818538" class="hero-element" >
+<div id="guid_78062a86_4aba_4564_a935_3f7abc231b6b" class="hero-element" >
+</div>
+<div id="guid_2be9e559_f038_481a_87b4_8243347ad6cd" class="hero-element" >1. Antonym<br/>2. Antonym<br/>3. Antonym<br/>4. Antonym
+</div>
+</div>
+</div>
+              </div>
+            </div> 
 
 
+      
 
+            
+            <div class="fusion--scene fusion--scene--default scene-guid_4dbb1518_5989_4276_939e_92a691f09a45">
+              <div class="fusion--scene--content">
+                
+<div id="guid_4dbb1518_5989_4276_939e_92a691f09a45" class="artboard scene" >
+<div id="guid_72c1c183_6aff_4b86_9631_33eb3c7ea13a" class="hero-element" >
+<div id="guid_7dc77bdd_4278_4c1b_a5dd_10aa820dc948" class="hero-element" >
+</div>
+<div id="guid_334b0711_274a_4665_b991_0cc2cef6fbef" class="hero-element" >
+</div>
+</div>
+<div id="guid_53021d5c_e539_49ca_af6d_0cb414f99aa6" class="hero-element" >
+</div>
+<div id="guid_80ca8299_7428_461e_b803_ef8342c06406" class="hero-element" >
+</div>
+<img id="guid_c1d7263e_37b0_4489_a228_36fdbb246b6c" class="hero-element" src="guid_c1d7263e_37b0_4489_a228_36fdbb246b6c.png" hero-fx-magnet="{}" >
+
+<div id="guid_ed401d41_c2f1_429c_97e5_aa9bf4655df2" class="hero-element" >
+<div id="guid_839dbb2f_03c7_4756_a513_638e28500dad" class="hero-element" >
+</div>
+<div id="guid_8d5825e8_7012_4503_a43e_49ba9f51d561" class="hero-element" >Type to add to Avationary
+</div>
+</div>
+<div id="guid_d68e83fc_e4bb_41db_a20f_8b0d9cf5b658" class="hero-element" >
+</div>
+<div id="guid_37558099_294c_4353_a51f_71b1f1bbe19c" class="hero-element" >
+<div id="guid_4e975129_58b5_46dd_9429_c874189254c8" class="hero-element" >
+</div>
+<div id="guid_6df2cac6_a765_495a_946e_613a24dc625e" class="hero-element" >Preview
+</div>
+</div>
+<img id="guid_61eac0c1_734c_447a_bc75_8310df14aff6" class="hero-element" src="guid_61eac0c1_734c_447a_bc75_8310df14aff6.png" hero-fx-magnet="{}" >
+
+<div id="guid_7ca6dbb7_2e11_45cf_bba6_a0983bee462e" class="hero-element" >
+<div id="guid_ba5d9b40_fe86_49e4_a98a_010a5b605f87" class="hero-element" >
+</div>
+</div>
+<div id="guid_20035cbd_e5ae_4ff5_baad_681f32aa50b5" class="hero-element" >
+<div id="guid_fe16fa7d_4767_480a_a961_b1018b5bbca2" class="hero-element" >
+</div>
+</div>
+<div id="guid_4316cfe6_b208_4146_8520_e0578c2bd324" class="hero-element" >
+</div>
+</div>
+              </div>
+            </div> 
+
+
+      
+
+            </div>
+          </div>
+        </div>
+
+      
+
+
+  <!-- Hero/Fusion Player -->
+  <script>
+    
+      document.addEventListener('DOMContentLoaded', function () {
+        window.player = new fusion.Player({
+          id: 'player',
+          // debug: true, 
+          scenes: [
+            
+            { 
+              id: 'guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c', 
+              type: 'flat', 
+              width: 1920, 
+              height: 1080,
+              fit: true, 
+              center: true,
+              plugins: [
+                // {id: 'visualDebugger', options: {centerV: true}},
+              ]
+            },              
+      
+            { 
+              id: 'guid_8126cea0_1d16_4207_b1a4_310b04cb4e57', 
+              type: 'flat', 
+              width: 1920, 
+              height: 1080,
+              fit: true, 
+              center: true,
+              plugins: [
+                // {id: 'visualDebugger', options: {centerV: true}},
+              ]
+            },              
+      
+            { 
+              id: 'guid_4dbb1518_5989_4276_939e_92a691f09a45', 
+              type: 'flat', 
+              width: 1920, 
+              height: 1080,
+              fit: true, 
+              center: true,
+              plugins: [
+                // {id: 'visualDebugger', options: {centerV: true}},
+              ]
+            },              
+      
+          ]
+        });
+        player.loadScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c');      
+      });
+    
+  </script>
+
+  <!-- Hero Scenes -->
+  <script>
+    
+      //---
+      // Scene: guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function() {
+          var log = console.log;
+          var player = window.player;
+          var scene = window.player.getScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c');          
+    
+            //---
+            // guid_efe97d6c_cd76_4d66_91e5_1822d770e970 : Interaction (tap)
+            document.getElementById('guid_efe97d6c_cd76_4d66_91e5_1822d770e970').addEventListener('click', function() { player.loadScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57') });
+            
+            //---
+            // guid_30833ce1_984d_4b0b_af25_263e600d1115 : Interaction (tap)
+            document.getElementById('guid_30833ce1_984d_4b0b_af25_263e600d1115').addEventListener('click', function() { player.loadScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57') });
+            
+            //---
+            // guid_48ca16f5_382d_47a5_ac8b_c15a97e660e0 : Interaction (tap)
+            document.getElementById('guid_48ca16f5_382d_47a5_ac8b_c15a97e660e0').addEventListener('click', function() { player.loadScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57') });
+            
+            //---
+            // guid_e7bf2284_175e_4361_ac04_1a337ef108f6 : Interaction (tap)
+            document.getElementById('guid_e7bf2284_175e_4361_ac04_1a337ef108f6').addEventListener('click', function() { player.loadScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57') });
+            
+        }, 1);
+      }); // Scene end    
+    
+      //---
+      // Scene: guid_8126cea0_1d16_4207_b1a4_310b04cb4e57
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function() {
+          var log = console.log;
+          var player = window.player;
+          var scene = window.player.getScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57');          
+    
+            //---
+            // guid_29b13311_7078_4846_a4b6_bd6df0e1e898 : Interaction (tap)
+            document.getElementById('guid_29b13311_7078_4846_a4b6_bd6df0e1e898').addEventListener('click', function() { player.loadScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c') });
+            
+        }, 1);
+      }); // Scene end    
+    
+      //---
+      // Scene: guid_4dbb1518_5989_4276_939e_92a691f09a45
+      document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function() {
+          var log = console.log;
+          var player = window.player;
+          var scene = window.player.getScene('guid_4dbb1518_5989_4276_939e_92a691f09a45');          
+    
+            //---
+            // guid_c1d7263e_37b0_4489_a228_36fdbb246b6c : Interaction (tap)
+            document.getElementById('guid_c1d7263e_37b0_4489_a228_36fdbb246b6c').addEventListener('click', function() { player.loadScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c') });
+            
+            //---
+            // guid_61eac0c1_734c_447a_bc75_8310df14aff6 : Interaction (tap)
+            document.getElementById('guid_61eac0c1_734c_447a_bc75_8310df14aff6').addEventListener('click', function() { player.loadScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c') });
+            
+        }, 1);
+      }); // Scene end    
+    
+  </script>
+
+  <!-- Hero Timelines -->
+  <script>
+    
+    //---
+    // Scene: guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c
+    document.addEventListener('DOMContentLoaded', function () {
+      var player = window.player;
+      var scene = window.player.getScene('guid_03fb2683_3418_4b4c_b8f0_4f07b5ab094c');
+      var log = console.log;
+      var tl = gsap.timeline({paused: true});
+      scene.timeline = tl;
+      
+    });
+    
+    //---
+    // Scene: guid_8126cea0_1d16_4207_b1a4_310b04cb4e57
+    document.addEventListener('DOMContentLoaded', function () {
+      var player = window.player;
+      var scene = window.player.getScene('guid_8126cea0_1d16_4207_b1a4_310b04cb4e57');
+      var log = console.log;
+      var tl = gsap.timeline({paused: true});
+      scene.timeline = tl;
+      
+    });
+    
+    //---
+    // Scene: guid_4dbb1518_5989_4276_939e_92a691f09a45
+    document.addEventListener('DOMContentLoaded', function () {
+      var player = window.player;
+      var scene = window.player.getScene('guid_4dbb1518_5989_4276_939e_92a691f09a45');
+      var log = console.log;
+      var tl = gsap.timeline({paused: true});
+      scene.timeline = tl;
+      
+    });
+    
+  </script>
+
+  
+  
 </body>
 </html>
