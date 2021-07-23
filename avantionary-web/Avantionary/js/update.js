@@ -41,13 +41,35 @@ function sendUpdate(){
 
 
   //Sample GET js for HTML 
-  const userAction = async () => {
-      var url = "https://learnappmaking.com/ex/news/articles/Apple?secret=CHWGk3OTwgObtQxGqdLvVhwji6FsYm95oe87o3ju"
-    const response = await fetch(url);
-    const myJson = await response.json(); //extract JSON from the http response
-    // do something with myJson
-    console.log(myJson);
-  }
+const userAction = async () => {
+//   console.log("In you");
+//   axios.get(url)
+// .then(response => {
+// const users = response.data.data;
+// console.log(`GET list users`, users);
+// })
+// .catch(error => console.error(error));
+var search = document.getElementById("word").value;
+        console.log(search);
+
+        var url = `http://127.0.0.1:5000/WordInformation/${search}`
+//        
+        console.log("In you");
+        axios.get(url)
+        .then(response => {
+            const word = response.data.data;
+            console.log(`GET list users`, word);
+            if (word[0] == "" || word == "Word does not exist."){
+              alert(word)
+            }
+            else{
+              alert(word)
+            }
+
+        })
+        .catch(error => console.error(error));
+}
+ // };
 
 
 //Button action code
