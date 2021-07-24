@@ -47,6 +47,7 @@ header{
     width: 50ex;
     height: 5ex;
     border-style: solid;
+    border-radius: 30ex;
 
 }
 #search_button{
@@ -102,6 +103,8 @@ output{
 .main_buttons{
     width:20ex;
     height:6ex;
+    border-radius: 25ex;
+
 }
 
 #delete_button{

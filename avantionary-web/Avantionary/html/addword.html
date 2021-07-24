@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/update.css">
     <script src="../js/addword.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
         </style>
@@ -23,11 +24,11 @@
             <input id = "partofspeech" class="udate_info_input" type="text" placeholder="Enter the part of speech it belongs">
             <input id = "synonym" class="udate_info_input" type="text" placeholder="Enter a synonym if any">
             <input id = "antonym" class="udate_info_input" type="text" placeholder="Enter an antonym of the word">
-            <button id="add_button" onclick="addWord()">Add Word</button>
         </form>
-        
+
     </div>
     
+    <button id="add_button" onclick="addWord()">Add Word</button>
 
 
 </body>

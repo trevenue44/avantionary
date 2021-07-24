@@ -49,21 +49,24 @@ const userAction = async () => {
 // console.log(`GET list users`, users);
 // })
 // .catch(error => console.error(error));
+
 var search = document.getElementById("word").value;
         console.log(search);
 
-        var url = `http://127.0.0.1:5000/WordInformation/${search}`
+       var url = `http://127.0.0.1:5000/WordInformation/${search}`
+      //  var url = 'http://127.0.0.1:8000/tenants'
+
 //        
         console.log("In you");
         axios.get(url)
         .then(response => {
             const word = response.data.data;
             console.log(`GET list users`, word);
-            if (word[0] == "" || word == "Word does not exist."){
-              alert(word)
+            if (word == "" || word == "Word does not exist."){
+              alert("Enter Word. ")
             }
             else{
-              alert(word)
+              alert(`Word already exists: ${word}`)
             }
 
         })
