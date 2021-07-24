@@ -25,6 +25,12 @@ class ChatVariables():
         self.to_delete = None
         self.ADD_WORD = False
         self.DELETE_WORD = False
+        self.update = False
+        self.UPDATE_WORD = False
+        self.to_update = {}
+        self.update_confirmed = False
+        self.update_info_taken = False
+        self.update_meaning, self.update_synonyms, self.update_antonyms, self.update_section_selected = (False, False, False, False)
 
 ID_VARIABLES = {}
 
@@ -66,6 +72,7 @@ def callback_query(call):
         ID_VARIABLES[call.message.chat.id].reverse = False
         ID_VARIABLES[call.message.chat.id].add = False
         ID_VARIABLES[call.message.chat.id].delete = False
+        ID_VARIABLES[call.message.chat.id].update = False
         avantionary_bot.send_message(call.message.chat.id, "Just text me the word!")
     # activating reverse mode when 'reverse' is chosen from the inline keyboard
     if (call.message.chat.id in ID_VARIABLES) and call.data == 'reverse':
@@ -73,6 +80,7 @@ def callback_query(call):
         ID_VARIABLES[call.message.chat.id].search = True
         ID_VARIABLES[call.message.chat.id].add = False
         ID_VARIABLES[call.message.chat.id].delete = False
+        ID_VARIABLES[call.message.chat.id].update = False
         avantionary_bot.send_message(call.message.chat.id, "Reverse mode activated.\nSend me the word in reverse.\nI'll still send you its information")
     # allowing the user to understand a series of items to be able to add to the dictionary
     if (call.message.chat.id in ID_VARIABLES) and call.data == 'add':
@@ -86,11 +94,19 @@ def callback_query(call):
         ID_VARIABLES[call.message.chat.id].search = False
         ID_VARIABLES[call.message.chat.id].delete = False
         ID_VARIABLES[call.message.chat.id].reverse = False
-        print(call.message.chat.id)
+        ID_VARIABLES[call.message.chat.id].update = False
     # initializing the process of deletion of word from dictionary
     if (call.message.chat.id in ID_VARIABLES) and call.data == "delete":
         avantionary_bot.send_message(call.message.chat.id, "Please enter the word you want to delete")
         ID_VARIABLES[call.message.chat.id].delete = True
+        ID_VARIABLES[call.message.chat.id].search = False
+        ID_VARIABLES[call.message.chat.id].reverse = False
+        ID_VARIABLES[call.message.chat.id].add = False
+        ID_VARIABLES[call.message.chat.id].update = False
+    if (call.message.chat.id in ID_VARIABLES) and call.data == "update":
+        avantionary_bot.send_message(call.message.chat.id, "Pleae Enter the word you want to update")
+        ID_VARIABLES[call.message.chat.id].update = True
+        ID_VARIABLES[call.message.chat.id].delete = False
         ID_VARIABLES[call.message.chat.id].search = False
         ID_VARIABLES[call.message.chat.id].reverse = False
         ID_VARIABLES[call.message.chat.id].add = False
@@ -107,6 +123,15 @@ def make_confirmation_markup():
     confirmation_markup.row(KeyboardButton("Yes"), KeyboardButton("No"))
     return confirmation_markup
 
+
+def make_update_markup():
+    """
+    A funciton for creating a ReplyKeyboardMarkup and returning it
+    """
+    update_markup = ReplyKeyboardMarkup()
+    update_markup.row(KeyboardButton("Meanings"))
+    update_markup.row(KeyboardButton("Synonyms"), KeyboardButton("Antonyms"))
+    return update_markup
 
 ########################################################################################################################
 ################################ Handling Searching and Reversed Searching #############################################
@@ -278,7 +303,7 @@ def delete_confirmation(message):
     global ID_VARIABLES
     if (message.chat.id in ID_VARIABLES) and (message.text.strip().lower() == "yes") and ID_VARIABLES[message.chat.id].DELETE_WORD and not (ID_VARIABLES[message.chat.id].is_confirmed or ID_VARIABLES[message.chat.id].delete or ID_VARIABLES[message.chat.id].search or ID_VARIABLES[message.chat.id].add or ID_VARIABLES[message.chat.id].ADD_WORD):
         avantionary_bot.send_message(message.chat.id, "Confirmed.", reply_markup=ReplyKeyboardRemove())
-        is_confirmed = True
+        ID_VARIABLES[message.chat.id].is_confirmed = True
         return True
     elif (message.chat.id in ID_VARIABLES) and (message.text.strip().lower() == "no") and ID_VARIABLES[message.chat.id].DELETE_WORD and not (ID_VARIABLES[message.chat.id].is_confirmed or ID_VARIABLES[message.chat.id].delete or ID_VARIABLES[message.chat.id].search or ID_VARIABLES[message.chat.id].add or ID_VARIABLES[message.chat.id].ADD_WORD):
         avantionary_bot.send_message(message.chat.id, "Action aborted.")
@@ -295,11 +320,110 @@ def delete_word_confirmed(message):
         feedback = db.delete_from_dictionary(ID_VARIABLES[message.chat.id].to_delete)
         avantionary_bot.send_message(message.chat.id, feedback)
         ID_VARIABLES[message.chat.id].DELETE_WORD = False
+        ID_VARIABLES[message.chat.id].is_confirmed = False
     else:
         return
 
-####################################################################################################################
+######################################################################################################################
+####################################### Updating Word in Dictionary ##################################################
+######################################################################################################################
+def should_update_word(message):
+    if (message.chat.id in ID_VARIABLES):
+        if (" " not in message.text.strip()) and ID_VARIABLES[message.chat.id].update and not (ID_VARIABLES[message.chat.id].search or ID_VARIABLES[message.chat.id].add or ID_VARIABLES[message.chat.id].delete or ID_VARIABLES[message.chat.id].DELETE_WORD or ID_VARIABLES[message.chat.id].ADD_WORD):
+            return True
+        elif ID_VARIABLES[message.chat.id].update_section_selected or ID_VARIABLES[message.chat.id].update_info_taken:
+            return True
+    else:
+        return False
 
+@avantionary_bot.message_handler(func=should_update_word)
+def update_word(message):
+    global ID_VARIABLE
+    word = message.text.strip()
+    if not ID_VARIABLES[message.chat.id].update_section_selected:
+        word_info = db.definitions(word)
+
+    # we load the necessary info about the specific word the user would like to change
+    # we ask the user which section he/she would like to change
+    if not ID_VARIABLES[message.chat.id].update_section_selected and (message.chat.id in ID_VARIABLES) and (word_info == "Word does not exist."):
+        avantionary_bot.reply_to(message, "Word does not exist.")
+    elif ID_VARIABLES[message.chat.id].to_update == {}:
+        ID_VARIABLES[message.chat.id].to_update["word"] = word
+        ID_VARIABLES[message.chat.id].to_update["meaning"] = word_info[0]
+        ID_VARIABLES[message.chat.id].to_update["synonyms"] = word_info[1]
+        ID_VARIABLES[message.chat.id].to_update["antonyms"] = word_info[2]
+        avantionary_bot.reply_to(message, "Which section would you like to update?", reply_markup=make_update_markup())
+    
+    # we access the user's choice on the sections and make the necessary changes to ensure we proceed with the update
+    if not ID_VARIABLES[message.chat.id].update_section_selected and (word.lower() == "meanings"):
+        ID_VARIABLES[message.chat.id].update_meaning = True
+        ID_VARIABLES[message.chat.id].update_section_selected = True
+        avantionary_bot.reply_to(message, f"Send what you would like the MEANING to be replaced with. This is the current MEANING(S):")
+        avantionary_bot.send_message(message.chat.id, ID_VARIABLES[message.chat.id].to_update["meaning"])
+    elif not ID_VARIABLES[message.chat.id].update_section_selected and (word.lower() == "antonyms"):
+        ID_VARIABLES[message.chat.id].update_antonyms = True
+        ID_VARIABLES[message.chat.id].update_section_selected = True
+        avantionary_bot.reply_to(message, f"Send what you would like the SYNONYMS to be replaced with. This are the current SYNONYMS:")
+        avantionary_bot.send_message(message.chat.id, ID_VARIABLES[message.chat.id].to_update["synonyms"])
+    elif not ID_VARIABLES[message.chat.id].update_section_selected and (word.lower() == "synonyms"):
+        ID_VARIABLES[message.chat.id].update_synonyms = True
+        ID_VARIABLES[message.chat.id].update_section_selected = True
+        avantionary_bot.reply_to(message, f"Send what you would like the ANTONYMS to be replaced with. This are the current ANTONYMS:")
+        avantionary_bot.send_message(message.chat.id, ID_VARIABLES[message.chat.id].to_update["antonyms"])
+
+    # Now that the user has chosen what to update, we allow the user to give as the new thing to add
+    elif ID_VARIABLES[message.chat.id].update_section_selected and not ID_VARIABLES[message.chat.id].update_info_taken:
+        if ID_VARIABLES[message.chat.id].update_meaning:
+            ID_VARIABLES[message.chat.id].to_update["meaning"] = message.text.strip()
+            avantionary_bot.reply_to(message, "New meaning taken.")
+        elif ID_VARIABLES[message.chat.id].update_synonyms:
+            ID_VARIABLES[message.chat.id].to_update["synonyms"] = message.text.strip()
+            avantionary_bot.reply_to(message, "New synonyms taken.")
+        elif ID_VARIABLES[message.chat.id].update_antonyms:
+            ID_VARIABLES[message.chat.id].to_update["antonyms"] = message.text.strip()
+            avantionary_bot.reply_to(message, "New antonyms taken in.")
+        # we now ask for confirmantion
+        final_word_info = (ID_VARIABLES[message.chat.id].to_update["meaning"], ID_VARIABLES[message.chat.id].to_update["synonyms"], ID_VARIABLES[message.chat.id].to_update["antonyms"])
+        avantionary_bot.send_message(message.chat.id, "Would you like to save the following changes?", reply_markup=ReplyKeyboardRemove())
+        avantionary_bot.reply_to(message, f"MEANING(S):\n{final_word_info[0]}\n\nSYNONYM(S):\n{final_word_info[1]}\n\nANTONYM(S):\n{final_word_info[2]}")
+        ID_VARIABLES[message.chat.id].update_info_taken = True
+
+    # after taking in the data and asking for confirmation
+    elif ID_VARIABLES[message.chat.id].update_info_taken:
+        # we chech to see if the user has actually confirmed
+        if word.lower() == "yes":
+            avantionary_bot.send_message(message.chat.id, "Confirmed.", reply_markup=ReplyKeyboardRemove())
+            try:
+                feedback = db.add_to_dictionary(ID_VARIABLES[message.chat.id].to_update)
+                word_to_update = ID_VARIABLES[message.chat.id].to_update["word"]
+                if feedback == (word_to_update.upper() + " added succesfully!"):
+                    avantionary_bot.send_message(message.chat.id, word_to_update.upper() + " updated succesfully.")
+                else:
+                    avantionary_bot.send_message(message.chat.id, "An unexpected error occured.")
+            except Exception:
+                avantionary_bot.send_message(message.chat.id, "Something went wrong.")
+            ID_VARIABLES[message.chat.id].update = False
+            ID_VARIABLES[message.chat.id].update_meaning = False
+            ID_VARIABLES[message.chat.id].update_synonyms = False
+            ID_VARIABLES[message.chat.id].update_antonyms = False
+            ID_VARIABLES[message.chat.id].update_section_selected = False
+            ID_VARIABLES[message.chat.id].to_update = {}
+            ID_VARIABLES[message.chat.id].update_info_taken = False
+        # if the user has denied, we don't make any changes. Keep everything as is
+        # send everything back to normal
+        elif word.lower() == "no":
+            ID_VARIABLES[message.chat.id].update = False
+            ID_VARIABLES[message.chat.id].update_meaning = False
+            ID_VARIABLES[message.chat.id].update_synonyms = False
+            ID_VARIABLES[message.chat.id].update_antonyms = False
+            ID_VARIABLES[message.chat.id].update_section_selected = False
+            ID_VARIABLES[message.chat.id].to_update = {}
+            ID_VARIABLES[message.chat.id].update_info_taken = False
+            avantionary_bot.send_message(message.chat.id, "Update Aborted.", reply_markup=ReplyKeyboardRemove())
+
+
+##################################################################################################################################
+##################################################################################################################################
 def start_polling():
     """
     A function to allow external access to the bot. To be able to poll from another file
