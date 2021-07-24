@@ -1,3 +1,7 @@
+*{
+    font-family: 'Uchen', serif;
+
+}
 body {
     display: flex;
     flex-direction:column;
@@ -16,42 +20,41 @@ header{
     flex-direction: row;
     justify-content: center;
 }
- header h1{
+header h1{
     font-family: 'Uchen', serif;
     font-size: 6ex;
     color: rgb(160, 136, 4);
     margin: 0ex;
 }
-#update_area{
+#add_info_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: solid; */
+    height: min-content;
+}
+#add_info_div h2{
+    align-self: center;
+    margin-bottom: 2ex;
+    font-size: 5ex;
+    height: min-content;
+}
+.update_info_input{
+    height: 5ex;
+    width: 60ex;
+    margin: 2ex;
+    border: solid;
+    border-radius: 2ex;
+}
+#add_area{
     display: flex;
     flex-direction: row;
     width: fit-content;
     height: fit-content;
     margin: 0;
 }
-#update_info h2{
-    align-self: center;
-    margin-bottom: 2ex;
-    font-size: 5ex;
-    height: min-content;
-}
-.art{
-    width: 80ex;
-    height: 80ex;
-}
-#update_info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.update_info_input{
-    height: 5ex;
-    width: 60ex;
-    margin: 2ex;
-    border-radius: 20ex;
-}
 
-#update_button{
+#add_button{
     margin: 3ex;
     width: 15ex;
     height: 4ex;
@@ -60,12 +63,9 @@ header{
     align-self: center;
     border-radius: 2ex;
     border: green;
+    
 }
-
-#meaning{
-    width: 60ex;
-    height: 20ex;
-    border: solid;
-    border-radius: 3ex;
-    align-self: center;
+.art{
+    width: 80ex;
+    height: 80ex;
 }
