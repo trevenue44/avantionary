@@ -4,31 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/update.css">
+    <link rel="stylesheet" href="../css/addword.css">
     <script src="../js/addword.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
         </style>
 
-    <title>Avanctionary | Update Screen </title>
+    <title>Avantionary | Add Screen </title>
 </head>
 <body>
     <header>
-        <h1>Avantionary</h1>
+        <a href="../html/index.html"><h1>Avantionary</h1></a>
     </header>
 
-    <div id="update_info">
-        <form action="" method="post">
-            <input id = "word" class="udate_info_input" type="text" placeholder="Enter the word to add">
-            <input id = "partofspeech" class="udate_info_input" type="text" placeholder="Enter the part of speech it belongs">
-            <input id = "synonym" class="udate_info_input" type="text" placeholder="Enter a synonym if any">
-            <input id = "antonym" class="udate_info_input" type="text" placeholder="Enter an antonym of the word">
-        </form>
+    <div id="add_area">
+        <img id="gal_art" class="art" src="../images/AvantionaryGyal2.png" alt="">
 
+        <div id="add_info_div">
+
+            <h2>Add Word</h2>
+
+                <input id = "word" class="update_info_input" type="text" placeholder="Enter the word to add">
+                <input id = "partofspeech" class="update_info_input" type="text" placeholder="Enter the part of speech it belongs">
+                <input id = "synonym" class="update_info_input" type="text" placeholder="Enter a synonym if any">
+                <input id = "antonym" class="update_info_input" type="text" placeholder="Enter an antonym of the word">
+                <button id="add_button" onclick="addWord()">Add Word</button>
+            
+        </div>
+
+        <img id="guy_art" class="art" src="../images/AvantionaryColour2.png" alt="">
     </div>
+
     
-    <button id="add_button" onclick="addWord()">Add Word</button>
+
 
 
 </body>

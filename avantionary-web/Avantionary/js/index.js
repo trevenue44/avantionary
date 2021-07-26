@@ -29,6 +29,7 @@ function showAnswer(){
         })
         .catch(error => console.error(error));
     // document.getElementById("outputarea").innerHTML = word;
+    document.getElementById("outputarea").innerHTML = inputVal;
     //alert("Trial Note")
     //Show answer in text area
 
