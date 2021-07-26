@@ -18,13 +18,13 @@ function showAnswer(){
         .then(response => {
           const word = response.data.data;
           console.log(`GET list users`, word);
-            alert(word)
-            if (word == "" || word == "Word does not exist."){
-              alert(word)
-            }
-            else{
-              document.getElementById("outputarea").innerHTML = word;
-            }
+            alert(`${inputVal} : \n \n \n ${word}`)
+            // if (word == "" || word == "Word does not exist."){
+            //   alert(word)
+            // }
+            // else{
+            //   document.getElementById("outputarea").innerHTML = word;
+            // }
 
         })
         .catch(error => console.error(error));

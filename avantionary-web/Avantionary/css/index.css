@@ -48,6 +48,7 @@ header{
     height: 5ex;
     border-style: solid;
     border-radius: 30ex;
+    padding: 0 5ex 0 5ex;
 
 }
 #search_button{
