@@ -27,8 +27,12 @@ class DataBase():
         if word in dictionary_data:
             word_info = dictionary_data[word]
             word_meanings = word_info["MEANINGS"]
-            word_synonyms = ", ".join(syn for syn in word_info["SYNONYMS"] if syn.upper() != word)
-            word_antonyms = ", ".join(word_info["ANTONYMS"])
+            if type(word_info["SYNONYMS"]) == list or type(word_info["ANTONYMS"]) == list:
+                word_synonyms = ", ".join(syn for syn in word_info["SYNONYMS"] if syn.upper() != word)
+                word_antonyms = ", ".join(word_info["ANTONYMS"])
+            else:
+                word_synonyms = word_info["SYNONYMS"]
+                word_antonyms = word_info["ANTONYMS"]
             word_meanings_s = ""
             for key in word_meanings:
                 if type(word_meanings[key]) == list:
