@@ -37,6 +37,6 @@ api.add_resource(WordInformation, "/WordInformation/<string:word>")
 
 # for staring the api application
 def start_api():
-    app.run(debug=True,port=2000)
+    app.run(debug=True,port=5000)
     # PORT INSIDE ABOVE.
 
