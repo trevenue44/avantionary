@@ -70,15 +70,19 @@
 
 
 
-        <!-- <script>
-            let resEle = document.querySelector(".result");
-            let heading = document.createElement("h3");
-            document.querySelector(".Btn").addEventListener("click", () => {
-               let headingText = document.createTextNode("This is a random heading");
-               heading.appendChild(headingText);
-               resEle.appendChild(heading);
-            });
-         </script> -->
+       <script>
+           var input = document.getElementById("search_bar");
+
+           input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("search_button").click();
+  }
+});
+       </script>
    
     </div>
     
