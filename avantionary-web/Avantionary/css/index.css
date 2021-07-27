@@ -1,13 +1,9 @@
-*{
-    margin: 0;
-}
-
 body {
     display: flex;
     flex-direction:column;
     align-items: center;
     position: relative;
-    margin:1ex;
+    padding:1ex;
     background-color: burlywood;
 }
 
@@ -47,6 +43,8 @@ header{
     width: 50ex;
     height: 5ex;
     border-style: solid;
+    border-radius: 30ex;
+    padding: 0 5ex 0 5ex;
 
 }
 #search_button{
@@ -97,11 +95,14 @@ output{
 
 #main_buttons_div{
     margin-top:2ex;
+    width: max-content;
 }
 
 .main_buttons{
     width:20ex;
     height:6ex;
+    border-radius: 2ex;
+    margin-left: 2ex;
 }
 
 #delete_button{

@@ -28,9 +28,9 @@ class WordInformation(Resource):
         return {"data": db.definitions(word)}
 
     # the post method of this resource class takes in data from client
-    def post(self, word):
-        args = word_put_args.parse_args()
-        return {word: args}
+    # def post(self, word):
+    #     args = word_put_args.parse_args()
+    #     return {word: args}
 
 # adding the WordInformation resource to the api
 api.add_resource(WordInformation, "/WordInformation/<string:word>")
@@ -38,4 +38,5 @@ api.add_resource(WordInformation, "/WordInformation/<string:word>")
 # for staring the api application
 def start_api():
     app.run(debug=True)
+    # PORT INSIDE ABOVE.
 

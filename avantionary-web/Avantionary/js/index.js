@@ -9,7 +9,6 @@ function getInputValue(){
 
 function showAnswer(){
     var inputVal = document.getElementById("search_bar").value;
-    //var search = document.getElementById("word").value;
         console.log(inputVal);
 
         var url = `http://127.0.0.1:5000/WordInformation/${inputVal}`
@@ -17,18 +16,20 @@ function showAnswer(){
         console.log("In you");
         axios.get(url)
         .then(response => {
-         word = response.data.data;
-            console.log(`GET list users`, word);
-            if (word[0] == "" || word == "Word does not exist."){
-              alert(word)
-            }
-            else{
-              alert(word)
-            }
+          const word = response.data.data;
+          console.log(`GET list users`, word);
+            alert(`${inputVal} : \n \n \n ${word}`)
+            // if (word == "" || word == "Word does not exist."){
+            //   alert(word)
+            // }
+            // else{
+            //   document.getElementById("outputarea").innerHTML = word;
+            // }
 
         })
         .catch(error => console.error(error));
-    document.getElementById("outputarea").innerHTML = word;
+    // document.getElementById("outputarea").innerHTML = word;
+    // document.getElementById("outputarea").innerHTML = inputVal;
     //alert("Trial Note")
     //Show answer in text area
 
